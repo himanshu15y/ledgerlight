@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suggestion chat · Ledgerlight prototype</title>
+<style>
+body{margin:0}
+a{color:#0B6E73}a:hover{color:#08575B}
+</style>
+<style>
+html{background:#E4EAE8}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px 0 32px;box-sizing:border-box;
+ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif}
+.ll-bar{width:390px;max-width:100%;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#3F4B49}
+.ll-bar a{color:#0B6E73;text-decoration:none;font-weight:600}
+.ll-phone{border-radius:28px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.08),0 12px 40px rgba(16,40,38,.18);background:#F2F5F4}
+@media (max-width:420px){body{padding:0}.ll-bar{padding:10px 12px;box-sizing:border-box}.ll-phone{border-radius:0;box-shadow:none}}
+html.thumb,html.thumb body{background:#F2F5F4;padding:0;display:block;min-height:0}
+html.thumb .ll-bar{display:none}
+html.thumb .ll-phone{border-radius:0;box-shadow:none}
+</style>
+<script>if(location.hash==='#thumb')document.documentElement.classList.add('thumb')</script>
+</head>
+<body>
+<div class="ll-bar"><a href="../index.html">← All screens</a><span>Suggestion chat</span></div>
+<div class="ll-phone">
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F5F4; color: #15201F; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-size: 15px; display: flex; flex-direction: column; overflow: hidden">
+  <header style="background: #FFFFFF; border-bottom: 1px solid #D9E0DE; display: flex; flex-direction: column; gap: 10px; padding: 18px 16px 12px">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <a href="Suggestions.html" style="font-size: 14px; text-decoration: none; padding: 8px 4px; white-space: nowrap">← Suggestions</a>
+      <h1 style="margin: 0; font-size: 20px; font-family: ui-rounded, 'SF Pro Rounded', -apple-system, system-ui, sans-serif">Chat</h1>
+      <span style="margin-left: auto; font-size: 11px; color: #4A3D8F; background: #EEEAF9; border-radius: 999px; padding: 2px 8px">Local AI</span>
+    </div>
+    <section aria-label="The suggestion" style="background: #F7F5FD; border: 1px solid #C9C2E6; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 11px; font-weight: 700; color: #4A3D8F; letter-spacing: 0.04em">CATEGORY</span>
+      <span style="font-size: 14px">Put <span style="font-family: ui-monospace, Menlo, monospace; font-size: 13px">SRI NIMBUS STORES</span> in <b>Groceries</b></span>
+      <div style="display: flex; gap: 8px">
+        <button type="button" style="font: inherit; font-size: 14px; font-weight: 600; background: #0B6E73; color: #FFFFFF; border: 0; border-radius: 10px; padding: 0 14px; min-height: 44px">Accept</button>
+        <button type="button" style="font: inherit; font-size: 14px; background: #FFFFFF; color: #15201F; border: 1px solid #D9E0DE; border-radius: 10px; padding: 0 14px; min-height: 44px">Other category</button>
+        <button type="button" style="font: inherit; font-size: 14px; background: transparent; color: #5B6967; border: 0; padding: 0 8px; min-height: 44px; margin-left: auto">Dismiss</button>
+      </div>
+    </section>
+  </header>
+
+  <main style="flex-grow: 1; min-height: 0; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px">
+    <div style="align-self: flex-start; max-width: 88%; background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 14px 14px 14px 4px; padding: 10px 13px; display: flex; flex-direction: column; gap: 10px">
+      <span>I suggest <b>Groceries</b>. This shop has 12 records from 2 Jul to 18 Oct. Amounts are ₹187 to ₹1,450, mostly between 7 and 9 pm. You put 3 shops with the same pattern in Groceries.</span>
+      <div style="display: flex; flex-direction: column; border: 1px solid #ECF0EF; border-radius: 10px">
+        <div style="display: flex; justify-content: space-between; padding: 8px 10px; font-size: 13px"><span>Sat, 18 Oct · 8:12 pm</span><span style="font-variant-numeric: tabular-nums">₹1,450</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 8px 10px; font-size: 13px; border-top: 1px solid #ECF0EF"><span>Tue, 7 Oct · 7:40 pm</span><span style="font-variant-numeric: tabular-nums">₹627</span></div>
+        <a href="Records.html" style="padding: 9px 10px; font-size: 13px; font-weight: 600; text-decoration: none; border-top: 1px solid #ECF0EF">See all 12 in Records →</a>
+      </div>
+    </div>
+
+    <div style="align-self: flex-end; max-width: 80%; background: #D4ECE6; border-radius: 14px 14px 4px 14px; padding: 10px 13px">Could it be a medical store?</div>
+
+    <div style="align-self: flex-start; max-width: 88%; background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 14px 14px 14px 4px; padding: 10px 13px">That is less likely. Your medical stores have amounts under ₹1,700 and "pharma" or "medical" in the name. This shop has 4 records above ₹1,700. If it is a medical store, tap <b>Other category</b> and pick Health.</div>
+
+    <div role="group" aria-label="Ask next" style="display: flex; flex-wrap: wrap; gap: 6px">
+      <button type="button" style="font: inherit; font-size: 13px; background: #FFFFFF; color: #0B5357; border: 1px solid #B8D9D9; border-radius: 999px; padding: 8px 12px; min-height: 36px">Make it a rule</button>
+      <button type="button" style="font: inherit; font-size: 13px; background: #FFFFFF; color: #0B5357; border: 1px solid #B8D9D9; border-radius: 999px; padding: 8px 12px; min-height: 36px">Which other shops look the same?</button>
+      <button type="button" style="font: inherit; font-size: 13px; background: #FFFFFF; color: #0B5357; border: 1px solid #B8D9D9; border-radius: 999px; padding: 8px 12px; min-height: 36px">How much did I spend there?</button>
+    </div>
+    <p style="margin: 0; font-size: 12px; color: #5B6967">Answered by qwen2.5:7b on this laptop. The chat does not leave your devices.</p>
+  </main>
+
+  <form style="display: flex; gap: 8px; align-items: center; background: #FFFFFF; border-top: 1px solid #D9E0DE; padding: 10px 12px 26px">
+    <label for="chat-q" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Ask about this suggestion</label>
+    <input id="chat-q" type="text" placeholder="Ask about this suggestion" style="font: inherit; flex-grow: 1; min-width: 0; min-height: 44px; box-sizing: border-box; border: 1px solid #D9E0DE; border-radius: 22px; padding: 0 16px; background: #F7F9F8; color: #15201F">
+    <button type="button" aria-label="Send" style="width: 44px; height: 44px; border-radius: 22px; border: 0; background: #0B6E73; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+  </form>
+</div>
+</div>
+</body>
+</html>

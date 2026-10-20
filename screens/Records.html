@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Records: period menu · Ledgerlight prototype</title>
+<style>
+body{margin:0}
+a{color:#0B6E73}a:hover{color:#08575B}
+</style>
+<style>
+html{background:#E4EAE8}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px 0 32px;box-sizing:border-box;
+ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif}
+.ll-bar{width:390px;max-width:100%;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#3F4B49}
+.ll-bar a{color:#0B6E73;text-decoration:none;font-weight:600}
+.ll-phone{border-radius:28px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.08),0 12px 40px rgba(16,40,38,.18);background:#F2F5F4}
+@media (max-width:420px){body{padding:0}.ll-bar{padding:10px 12px;box-sizing:border-box}.ll-phone{border-radius:0;box-shadow:none}}
+html.thumb,html.thumb body{background:#F2F5F4;padding:0;display:block;min-height:0}
+html.thumb .ll-bar{display:none}
+html.thumb .ll-phone{border-radius:0;box-shadow:none}
+</style>
+<script>if(location.hash==='#thumb')document.documentElement.classList.add('thumb')</script>
+</head>
+<body>
+<div class="ll-bar"><a href="../index.html">← All screens</a><span>Records: period menu</span></div>
+<div class="ll-phone">
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F5F4; color: #15201F; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-size: 15px; display: flex; flex-direction: column; overflow: hidden; position: relative">
+  <header style="display: flex; align-items: center; gap: 10px; padding: 18px 16px 12px; background: #FFFFFF; border-bottom: 1px solid #D9E0DE">
+    <span style="width: 30px; height: 30px; border-radius: 8px; background: #0B6E73; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700">₹</span>
+    <h1 style="margin: 0; font-size: 20px; font-family: ui-rounded, 'SF Pro Rounded', -apple-system, system-ui, sans-serif">Records</h1>
+  </header>
+  <main style="flex-grow: 1; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+    <div style="display: flex; gap: 8px">
+      <label style="flex-grow: 1; display: flex; align-items: center; gap: 8px; background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 10px; padding: 0 10px; min-height: 44px">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5B6967" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input aria-label="Search" value="blue tokai" style="font: inherit; border: 0; outline: 0; flex-grow: 1; min-width: 0; background: transparent; color: #15201F">
+      </label>
+      <a href="Main.html" style="font-weight: 600; background: #0B6E73; color: #FFFFFF; text-decoration: none; border-radius: 10px; padding: 0 14px; min-height: 44px; display: flex; align-items: center">✦ Ask</a>
+    </div>
+
+    <div style="display: flex; gap: 8px; align-items: center">
+      <label for="period" style="font-size: 13px; color: #5B6967">Period</label>
+      <button id="period" type="button" style="font: inherit; flex-grow: 1; text-align: left; background: #FFFFFF; color: #15201F; border: 2px solid #0B6E73; border-radius: 10px; padding: 9px 12px; min-height: 44px; display: flex; justify-content: space-between">Last 3 months<span aria-hidden="true">▾</span></button>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 12px; box-shadow: 0 8px 24px rgba(21,32,31,.12); display: flex; flex-direction: column; overflow: hidden">
+      <button type="button" style="font: inherit; text-align: left; background: #FFFFFF; color: #15201F; border: 0; border-bottom: 1px solid #ECF0EF; padding: 12px 14px">One month (Oct 2026, Sep 2026 …)</button>
+      <button type="button" style="font: inherit; text-align: left; background: #FFFFFF; color: #15201F; border: 0; border-bottom: 1px solid #ECF0EF; padding: 12px 14px">Last 1 week</button>
+      <button type="button" style="font: inherit; text-align: left; background: #FFFFFF; color: #15201F; border: 0; border-bottom: 1px solid #ECF0EF; padding: 12px 14px">Last 1 month</button>
+      <button type="button" style="font: inherit; text-align: left; background: #DCEDED; color: #0B5357; font-weight: 600; border: 0; border-bottom: 1px solid #ECF0EF; padding: 12px 14px">✓ Last 3 months</button>
+      <button type="button" style="font: inherit; text-align: left; background: #FFFFFF; color: #15201F; border: 0; border-bottom: 1px solid #ECF0EF; padding: 12px 14px">Last 1 year</button>
+      <button type="button" style="font: inherit; text-align: left; background: #FFFFFF; color: #15201F; border: 0; border-bottom: 1px solid #ECF0EF; padding: 12px 14px">All time</button>
+      <div style="padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 14px; font-weight: 600">Custom range</span>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #5B6967">From<input value="2026-07-20" style="font: inherit; font-size: 14px; border: 1px solid #D9E0DE; border-radius: 8px; padding: 8px; color: #15201F"></label>
+          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #5B6967">To<input value="2026-10-20" style="font: inherit; font-size: 14px; border: 1px solid #D9E0DE; border-radius: 8px; padding: 8px; color: #15201F"></label>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; font-size: 13px; color: #5B6967; font-variant-numeric: tabular-nums"><span>4 records · 20 Jul – 20 Oct</span><span>Out <b style="color: #15201F">₹1,820</b> · In <b style="color: #24794A">₹0</b></span></div>
+    <div style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 12px; display: flex; flex-direction: column">
+      <div style="display: flex; justify-content: space-between; padding: 11px 14px; border-bottom: 1px solid #ECF0EF"><span>Blue Tokai Coffee<br><span style="font-size: 12px; color: #5B6967">14 Oct · Food &amp; Dining · Test card ··0001</span></span><span style="font-variant-numeric: tabular-nums">₹527</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 11px 14px"><span>Blue Tokai Coffee<br><span style="font-size: 12px; color: #5B6967">4 Oct · Food &amp; Dining · Test card ··0001</span></span><span style="font-variant-numeric: tabular-nums">₹447</span></div>
+    </div>
+  </main>
+  <nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: #FFFFFF; border-top: 1px solid #D9E0DE; padding: 6px 4px 20px">
+    <a href="Home.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
+    <a href="Records.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #0B6E73; font-weight: 700; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Records</a>
+    <a href="Inbox.html" aria-label="Inbox, 13 items" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13h5l1.5 3h5l1.5-3h5M5.5 5h13L21 13v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/></svg><span aria-hidden="true" style="position: absolute; top: -5px; left: 13px; min-width: 18px; height: 16px; padding: 0 4px; box-sizing: border-box; border-radius: 8px; background: #B23A3A; color: #FFFFFF; font-size: 10px; font-weight: 700; line-height: 16px; text-align: center">13</span></span>Inbox</a>
+    <a href="Main.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></svg>Ask</a>
+    <a href="More.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>More</a>
+  </nav>
+</div>
+</div>
+</body>
+</html>

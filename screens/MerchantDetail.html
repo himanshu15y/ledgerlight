@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merchant detail · Ledgerlight prototype</title>
+<style>
+body{margin:0}
+a{color:#0B6E73}a:hover{color:#08575B}
+</style>
+<style>
+html{background:#E4EAE8}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px 0 32px;box-sizing:border-box;
+ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif}
+.ll-bar{width:390px;max-width:100%;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#3F4B49}
+.ll-bar a{color:#0B6E73;text-decoration:none;font-weight:600}
+.ll-phone{border-radius:28px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.08),0 12px 40px rgba(16,40,38,.18);background:#F2F5F4}
+@media (max-width:420px){body{padding:0}.ll-bar{padding:10px 12px;box-sizing:border-box}.ll-phone{border-radius:0;box-shadow:none}}
+html.thumb,html.thumb body{background:#F2F5F4;padding:0;display:block;min-height:0}
+html.thumb .ll-bar{display:none}
+html.thumb .ll-phone{border-radius:0;box-shadow:none}
+</style>
+<script>if(location.hash==='#thumb')document.documentElement.classList.add('thumb')</script>
+</head>
+<body>
+<div class="ll-bar"><a href="../index.html">← All screens</a><span>Merchant detail</span></div>
+<div class="ll-phone">
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F5F4; color: #15201F; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-size: 15px; display: flex; flex-direction: column; overflow: hidden">
+  <header style="background: #FFFFFF; border-bottom: 1px solid #D9E0DE; display: flex; flex-direction: column; gap: 10px; padding: 14px 16px 12px">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <a href="Merchants.html" style="font-size: 14px; text-decoration: none; padding: 8px 4px">← Merchants</a>
+      <h1 style="margin: 0; font-size: 20px; font-family: ui-rounded, 'SF Pro Rounded', -apple-system, system-ui, sans-serif">Greenleaf Grocers</h1>
+      <span style="margin-left: auto; font-size: 12px; color: #5B6967"><span aria-hidden="true" style="display: inline-block; width: 9px; height: 9px; border-radius: 3px; background: #E07A3F; margin-right: 5px"></span>Food &amp; Dining</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+      <button type="button" aria-haspopup="menu" style="font: inherit; text-align: left; background: #F7F9F8; color: #15201F; border: 1px solid #D9E0DE; border-radius: 10px; padding: 5px 10px; min-height: 44px; display: flex; justify-content: space-between; align-items: center; gap: 6px"><span style="display: flex; flex-direction: column"><span style="font-size: 11px; color: #5B6967">Account</span><span style="font-size: 14px; font-weight: 600">All accounts</span></span><span aria-hidden="true" style="color: #5B6967">▾</span></button>
+      <button type="button" aria-haspopup="menu" style="font: inherit; text-align: left; background: #F7F9F8; color: #15201F; border: 1px solid #D9E0DE; border-radius: 10px; padding: 5px 10px; min-height: 44px; display: flex; justify-content: space-between; align-items: center; gap: 6px"><span style="display: flex; flex-direction: column"><span style="font-size: 11px; color: #5B6967">Period</span><span style="font-size: 14px; font-weight: 600">Last 3 months</span></span><span aria-hidden="true" style="color: #5B6967">▾</span></button>
+    </div>
+  </header>
+
+  <main style="flex-grow: 1; min-height: 0; overflow-y: auto; padding: 14px 16px 20px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; font-variant-numeric: tabular-nums">
+      <div style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #5B6967">Spent</span><b style="font-size: 20px">₹14,880</b></div>
+      <div style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #5B6967">Visits</span><b style="font-size: 20px">31</b></div>
+      <div style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #5B6967">Average ticket</span><b style="font-size: 20px">₹480</b></div>
+      <div style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #5B6967">Refunds from it</span><b style="font-size: 20px; color: #24794A">₹372</b></div>
+    </div>
+
+    <section style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline"><h2 style="margin: 0; font-size: 16px">Spend per month</h2><span style="font-size: 12px; color: #5B6967">Your period in full colour</span></div>
+      <div role="img" aria-label="Greenleaf Grocers spend per month: May ₹5,120, Jun ₹4,640, Jul ₹5,400, Aug ₹4,180, Sep ₹5,460, Oct to 20th ₹5,240" style="display: flex; flex-direction: column; gap: 4px">
+        <div style="height: 100px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; align-items: end; border-bottom: 1px solid #B9C4C2">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="font-size: 11px; color: #5B6967; font-variant-numeric: tabular-nums">5,120</span><span style="width: 100%; height: 71.7px; background: #E07A3F; opacity: .45; border-radius: 3px 3px 0 0"></span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="font-size: 11px; color: #5B6967; font-variant-numeric: tabular-nums">4,640</span><span style="width: 100%; height: 65px; background: #E07A3F; opacity: .45; border-radius: 3px 3px 0 0"></span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="font-size: 11px; color: #5B6967; font-variant-numeric: tabular-nums">5,400</span><span style="width: 100%; height: 74.2px; background: #E07A3F; opacity: .45; border-radius: 3px 3px 0 0"></span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="font-size: 11px; font-variant-numeric: tabular-nums">4,180</span><span style="width: 100%; height: 58.5px; background: #E07A3F; border-radius: 3px 3px 0 0"></span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="font-size: 11px; font-variant-numeric: tabular-nums">5,460</span><span style="width: 100%; height: 76.4px; background: #E07A3F; border-radius: 3px 3px 0 0"></span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="font-size: 11px; font-variant-numeric: tabular-nums">5,240</span><span style="width: 100%; height: 73.4px; background: #E07A3F; border-radius: 3px 3px 0 0"></span></div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; font-size: 11px; color: #5B6967; text-align: center"><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct*</span></div>
+      </div>
+      <span style="font-size: 12px; color: #5B6967">Amounts in ₹. * Oct is to the 20th.</span>
+    </section>
+
+    <section style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 12px; display: flex; flex-direction: column">
+      <h2 style="margin: 0; padding: 12px 14px 6px; font-size: 16px">Refunds from Greenleaf Grocers</h2>
+      <div style="display: flex; justify-content: space-between; padding: 10px 14px; border-top: 1px solid #ECF0EF"><span>Order cancelled · 3 Sep<br><span style="font-size: 12px; color: #5B6967">Linked to the ₹317 order on 2 Sep</span></span><span style="color: #24794A; font-variant-numeric: tabular-nums">+₹317</span></div>
+      <a href="Links.html" style="display: flex; justify-content: space-between; padding: 10px 14px; border-top: 1px solid #ECF0EF; text-decoration: none; color: #15201F"><span>Cashback 10% · 28 Sep<br><span style="font-size: 12px; color: #9A6212">Not linked yet · Link it ›</span></span><span style="color: #24794A; font-variant-numeric: tabular-nums">+₹62</span></a>
+    </section>
+
+    <section style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 12px; display: flex; flex-direction: column">
+      <h2 style="margin: 0; padding: 12px 14px 6px; font-size: 16px">Last 5 records</h2>
+      <div style="display: flex; justify-content: space-between; padding: 10px 14px; border-top: 1px solid #ECF0EF"><span>Sat, 18 Oct<br><span style="font-size: 12px; color: #5B6967">Test card ··0002</span></span><span style="font-variant-numeric: tabular-nums">₹547</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 14px; border-top: 1px solid #ECF0EF"><span>Wed, 15 Oct<br><span style="font-size: 12px; color: #5B6967">Test card ··0002</span></span><span style="font-variant-numeric: tabular-nums">₹386</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 14px; border-top: 1px solid #ECF0EF"><span>Sat, 11 Oct<br><span style="font-size: 12px; color: #5B6967">Test Bank Savings · UPI</span></span><span style="font-variant-numeric: tabular-nums">₹712</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 14px; border-top: 1px solid #ECF0EF"><span>Mon, 6 Oct<br><span style="font-size: 12px; color: #5B6967">Test card ··0002</span></span><span style="font-variant-numeric: tabular-nums">₹305</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 14px; border-top: 1px solid #ECF0EF"><span>Thu, 2 Oct<br><span style="font-size: 12px; color: #5B6967">Test card ··0002</span></span><span style="font-variant-numeric: tabular-nums">₹455</span></div>
+      <a href="Records.html" style="padding: 12px 14px; border-top: 1px solid #ECF0EF; text-decoration: none; font-weight: 600">See all 31 in Records →</a>
+    </section>
+  </main>
+
+  <nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: #FFFFFF; border-top: 1px solid #D9E0DE; padding: 6px 4px 20px">
+    <a href="Home.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #0B6E73; font-weight: 700; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
+    <a href="Records.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Records</a>
+    <a href="Inbox.html" aria-label="Inbox, 13 items" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13h5l1.5 3h5l1.5-3h5M5.5 5h13L21 13v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/></svg><span aria-hidden="true" style="position: absolute; top: -5px; left: 13px; min-width: 18px; height: 16px; padding: 0 4px; box-sizing: border-box; border-radius: 8px; background: #B23A3A; color: #FFFFFF; font-size: 10px; font-weight: 700; line-height: 16px; text-align: center">13</span></span>Inbox</a>
+    <a href="Main.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></svg>Ask</a>
+    <a href="More.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>More</a>
+  </nav>
+</div>
+</div>
+</body>
+</html>

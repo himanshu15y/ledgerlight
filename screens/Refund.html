@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Refund: best match · Ledgerlight prototype</title>
+<style>
+body{margin:0}
+a{color:#0B6E73}a:hover{color:#08575B}
+summary{cursor:pointer}
+</style>
+<style>
+html{background:#E4EAE8}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px 0 32px;box-sizing:border-box;
+ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif}
+.ll-bar{width:390px;max-width:100%;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#3F4B49}
+.ll-bar a{color:#0B6E73;text-decoration:none;font-weight:600}
+.ll-phone{border-radius:28px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.08),0 12px 40px rgba(16,40,38,.18);background:#F2F5F4}
+@media (max-width:420px){body{padding:0}.ll-bar{padding:10px 12px;box-sizing:border-box}.ll-phone{border-radius:0;box-shadow:none}}
+html.thumb,html.thumb body{background:#F2F5F4;padding:0;display:block;min-height:0}
+html.thumb .ll-bar{display:none}
+html.thumb .ll-phone{border-radius:0;box-shadow:none}
+</style>
+<script>if(location.hash==='#thumb')document.documentElement.classList.add('thumb')</script>
+</head>
+<body>
+<div class="ll-bar"><a href="../index.html">← All screens</a><span>Refund: best match</span></div>
+<div class="ll-phone">
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #8A9694; color: #15201F; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-size: 15px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden">
+  <section role="dialog" aria-label="Myntra credit" style="background: #FFFFFF; border-radius: 18px 18px 0 0; padding: 10px 18px 18px; display: flex; flex-direction: column; gap: 14px; min-height: 600px">
+    <div style="display: flex; align-items: center"><span style="flex-grow: 1"></span><span aria-hidden="true" style="width: 40px; height: 5px; border-radius: 3px; background: #D9E0DE"></span><span style="flex-grow: 1; display: flex; justify-content: flex-end"><a href="Links.html" style="font-size: 14px; text-decoration: none; padding: 6px 2px">Close</a></span></div>
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px">
+      <div><h2 style="margin: 0; font-size: 22px; font-family: ui-rounded, 'SF Pro Rounded', -apple-system, system-ui, sans-serif">Myntra</h2><span style="color: #5B6967; font-size: 14px">Fri, 12 Sep · Test card ··0001</span></div>
+      <b style="font-size: 24px; color: #24794A; font-variant-numeric: tabular-nums">+₹1,299</b>
+    </div>
+
+    <div style="border: 2px solid #0B6E73; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px; background: #F4FAFA">
+      <span style="font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: #0B5357; font-weight: 700">Looks like a refund of</span>
+      <div style="display: flex; justify-content: space-between; gap: 8px"><span><b>Myntra</b> · Fri, 5 Sep<br><span style="font-size: 13px; color: #5B6967">Same shop · same card · 7 days before</span></span><span style="font-variant-numeric: tabular-nums; font-weight: 600">₹2,499</span></div>
+      <div style="display: flex; align-items: center; gap: 6px; font-size: 14px; color: #3F4B49; font-variant-numeric: tabular-nums">
+        <span>₹2,499</span><span aria-hidden="true">→</span><b style="color: #15201F">₹1,700 net</b><span style="color: #5B6967">after this refund</span>
+      </div>
+      <a href="RefundDone.html" style="text-align: center; background: #0B6E73; color: #FFFFFF; text-decoration: none; font-weight: 600; border-radius: 10px; padding: 13px 8px">Link as refund</a>
+      <details>
+        <summary style="font-size: 14px; color: #0B6E73">Only part of it is a refund</summary>
+        <label style="display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 14px; color: #5B6967">Amount<input aria-label="Refund amount" value="1,299.00" inputmode="decimal" style="font: inherit; width: 110px; border: 1px solid #D9E0DE; border-radius: 8px; padding: 7px 8px; color: #15201F; text-align: right"></label>
+      </details>
+    </div>
+
+    <details style="border-top: 1px solid #ECF0EF; padding-top: 10px">
+      <summary style="font-size: 15px">Not this one? 3 other purchases</summary>
+      <div style="display: flex; flex-direction: column; margin-top: 8px">
+        <button type="button" style="font: inherit; text-align: left; background: #FFFFFF; border: 0; border-bottom: 1px solid #ECF0EF; padding: 10px 0; display: flex; justify-content: space-between; color: #15201F"><span>Myntra · 28 Aug</span><span style="font-variant-numeric: tabular-nums">₹1,299</span></button>
+        <a href="Match.html" style="text-align: left; text-decoration: none; padding: 10px 0; display: flex; justify-content: space-between; color: #15201F"><span>Search all purchases…</span><span aria-hidden="true">›</span></a>
+      </div>
+    </details>
+
+    <button type="button" style="font: inherit; background: #FFFFFF; color: #5B6967; border: 1px solid #D9E0DE; border-radius: 10px; padding: 11px 8px">Not a refund (cashback, interest…)</button>
+
+    <dl style="margin: 0; display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 8px 10px; font-size: 14px; border-top: 1px solid #ECF0EF; padding-top: 12px">
+      <dt style="color: #5B6967">Category</dt><dd style="margin: 0">Shopping <span style="font-size: 12px; color: #5B6967">(from the purchase)</span></dd>
+      <dt style="color: #5B6967">Statement text</dt><dd style="margin: 0; font-family: ui-monospace, Menlo, monospace; font-size: 13px">MYNTRA DESIGNS PVT LTD</dd>
+    </dl>
+  </section>
+  <nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: #FFFFFF; border-top: 1px solid #D9E0DE; padding: 6px 4px 20px">
+    <a href="Home.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
+    <a href="Records.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Records</a>
+    <a href="Inbox.html" aria-current="page" aria-label="Inbox, 13 items" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #0B6E73; font-weight: 700; text-decoration: none"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13h5l1.5 3h5l1.5-3h5M5.5 5h13L21 13v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/></svg><span aria-hidden="true" style="position: absolute; top: -5px; left: 13px; min-width: 18px; height: 16px; padding: 0 4px; box-sizing: border-box; border-radius: 8px; background: #B23A3A; color: #FFFFFF; font-size: 10px; font-weight: 700; line-height: 16px; text-align: center">13</span></span>Inbox</a>
+    <a href="Main.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></svg>Ask</a>
+    <a href="More.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>More</a>
+  </nav>
+</div>
+</div>
+</body>
+</html>
