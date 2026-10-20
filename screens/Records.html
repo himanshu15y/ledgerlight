@@ -33,6 +33,7 @@ html.thumb .ll-phone{border-radius:0;box-shadow:none}
       <span aria-hidden="true" style="flex: none; width: 22px; height: 22px; border-radius: 6px; background: #0B6E73; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">₹</span>
       
       <h1 style="margin: 0; flex-grow: 1; min-width: 0; font-family: ui-rounded, 'SF Pro Rounded', -apple-system, 'Segoe UI', system-ui, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Records</h1>
+      <button type="button" onClick="{{toggleSel}}" aria-pressed="{{selecting}}" style="flex: none; border: 1px solid {{selBd}}; background: {{selBg}}; color: {{selFg}}; border-radius: 99px; padding: 6px 13px; font: inherit; font-size: 13px; white-space: nowrap">{{selLabel}}</button>
     </div>
     
   </header>
@@ -45,17 +46,25 @@ html.thumb .ll-phone{border-radius:0;box-shadow:none}
       <a href="Main.html" style="display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 9px; padding: 11px 16px; font: inherit; font-size: 15px; font-weight: 600; background: #0B6E73; color: #FFFFFF; text-decoration: none; white-space: nowrap">✦ Ask</a>
     </div>
     <div style="display: flex; flex-direction: column; gap: 8px">
-      <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #5B6967">Period
-        <select style="flex-grow: 1; min-width: 0; border: 1px solid #0B6E73; background: #FFFFFF; border-radius: 99px; padding: 9px 12px; font: inherit; font-size: 15px; color: #15201F"><option>One month · Sep 2026</option><option>Last 1 week</option><option>Last 1 month</option><option>Last 3 months</option><option>Last 1 year</option><option>All time</option><option>Custom range</option></select></label>
-      <div role="group" aria-label="Month" style="display: flex; gap: 8px; overflow-x: auto; margin: 0 -16px; padding: 0 16px 2px">
+      <div role="group" aria-label="Period" style="display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 0 32px 2px 16px; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent)">
+        <sc-for list="{{periods}}" as="s" hint-placeholder-count="7"><button type="button" onClick="{{s.pick}}" aria-pressed="{{s.on}}" style="flex: none; border: 1px solid {{s.bd}}; background: {{s.bg}}; color: {{s.fg}}; border-radius: 99px; padding: 6px 13px; font: inherit; font-size: 13px; white-space: nowrap">{{s.label}}</button></sc-for>
+      </div>
+      <sc-if value="{{isMonth}}" hint-placeholder-val="{{ true }}">
+      <div role="group" aria-label="Month" style="display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 0 32px 2px 16px; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent)">
         <sc-for list="{{months}}" as="s" hint-placeholder-count="3"><button type="button" onClick="{{s.pick}}" aria-pressed="{{s.on}}" style="flex: none; border: 1px solid {{s.bd}}; background: {{s.bg}}; color: {{s.fg}}; border-radius: 99px; padding: 6px 13px; font: inherit; font-size: 13px; white-space: nowrap">{{s.label}}</button></sc-for>
       </div>
+      </sc-if>
+      <sc-if value="{{isRange}}" hint-placeholder-val="{{ false }}"><div style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px">
+        <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: #5B6967; min-width: 0">From<input type="date" value="{{from}}" onChange="{{onFrom}}" style="width: 100%; box-sizing: border-box; border: 1px solid #D9E0DE; background: #FFFFFF; border-radius: 8px; padding: 9px 10px; font: inherit; font-size: 15px; color: #15201F"></label>
+        <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: #5B6967; min-width: 0">To<input type="date" value="{{to}}" onChange="{{onTo}}" style="width: 100%; box-sizing: border-box; border: 1px solid #D9E0DE; background: #FFFFFF; border-radius: 8px; padding: 9px 10px; font: inherit; font-size: 15px; color: #15201F"></label>
+      </div></sc-if>
     </div>
     <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
-      <div role="group" style="display: flex; flex-wrap: wrap; gap: 3px; background: #E8EDEB; border-radius: 9px; padding: 3px"><sc-for list="{{types}}" as="s" hint-placeholder-count="4"><button type="button" onClick="{{s.pick}}" aria-pressed="{{s.on}}" style="flex-grow: 1; border: 0; border-radius: 7px; padding: 7px 10px; font: inherit; font-size: 13px; font-weight: 500; color: #15201F; background: {{s.bg}}; box-shadow: {{s.shadow}}">{{s.label}}</button></sc-for></div>
-      <select aria-label="Category" onChange="{{onCat}}" style="border: 1px solid #D9E0DE; background: #FFFFFF; border-radius: 99px; padding: 6px 10px; font: inherit; font-size: 13px; color: #15201F; max-width: 100%"><option value="">All categories</option><option value="food">Food &amp; Dining</option><option value="groceries">Groceries</option><option value="transport">Transport</option><option value="shopping">Shopping</option><option value="entertainment">Entertainment</option><option value="bills">Bills &amp; Utilities</option><option value="health">Health</option><option value="travel">Travel</option><option value="subscriptions">Subscriptions</option><option value="rent">Rent &amp; Housing</option><option value="education">Education</option><option value="insurance">Insurance</option><option value="fees">Fees &amp; Charges</option><option value="cash">Cash Withdrawal</option><option value="loan">Loan &amp; EMI</option><option value="people">People (UPI to persons)</option><option value="other">Other</option><option value="investments">Investments</option><option value="income">Income</option><option value="refund">Refunds</option><option value="transfer">Own transfers</option></select>
+      <div role="group" aria-label="Type" style="display: inline-grid; grid-auto-flow: column; gap: 3px; background: #E8EDEB; border-radius: 9px; padding: 3px"><sc-for list="{{types}}" as="s" hint-placeholder-count="4"><button type="button" onClick="{{s.pick}}" aria-pressed="{{s.on}}" style="border: 0; border-radius: 7px; padding: 7px 14px; font: inherit; font-size: 13px; font-weight: 500; color: #15201F; background: {{s.bg}}; box-shadow: {{s.shadow}}">{{s.label}}</button></sc-for></div>
+      <select aria-label="Category" onChange="{{onCat}}" style="border: 1px solid #D9E0DE; background: #FFFFFF; border-radius: 99px; padding: 6px 10px; font: inherit; font-size: 13px; color: #15201F; max-width: calc(50% - 4px)"><option value="">All categories</option><option value="food">Food &amp; Dining</option><option value="groceries">Groceries</option><option value="transport">Transport</option><option value="shopping">Shopping</option><option value="entertainment">Entertainment</option><option value="bills">Bills &amp; Utilities</option><option value="health">Health</option><option value="travel">Travel</option><option value="subscriptions">Subscriptions</option><option value="rent">Rent &amp; Housing</option><option value="education">Education</option><option value="insurance">Insurance</option><option value="fees">Fees &amp; Charges</option><option value="cash">Cash Withdrawal</option><option value="loan">Loan &amp; EMI</option><option value="people">People (UPI to persons)</option><option value="other">Other</option><option value="investments">Investments</option><option value="income">Income</option><option value="refund">Refunds</option><option value="transfer">Own transfers</option></select>
+      <select aria-label="Account" onChange="{{onSrc}}" style="border: 1px solid #D9E0DE; background: #FFFFFF; border-radius: 99px; padding: 6px 10px; font: inherit; font-size: 13px; color: #15201F; max-width: calc(50% - 4px)"><option value="">All accounts</option><option>Test Bank Platinum</option><option>Test Bank Rewards</option><option>Other Bank Credit Card</option><option>Test Bank Savings</option></select>
     </div>
-    <div style="font-size: 13px; color: #5B6967">{{count}} · out <b>{{out}}</b> · in <b style="color: #24794A">{{inn}}</b></div>
+    <div style="font-size: 13px; color: #5B6967">{{count}} · out <b>{{out}}</b> · in <b style="color: #24794A">{{inn}}</b><sc-if value="{{refunded}}" hint-placeholder-val="{{ true }}"> · refunded <b>{{refunded}}</b></sc-if></div>
     <div style="display: flex; flex-direction: column">
       <sc-for list="{{days}}" as="d" hint-placeholder-count="3">
         <div style="display: flex; justify-content: space-between; padding: 14px 4px 6px; font-size: 13px; color: #5B6967; font-weight: 600"><span>{{d.label}}</span><span style="font-variant-numeric: tabular-nums">{{d.total}}</span></div>
@@ -72,14 +81,14 @@ html.thumb .ll-phone{border-radius:0;box-shadow:none}
           </sc-for>
         </div>
       </sc-for>
-      <sc-if value="{{none}}" hint-placeholder-val="{{ false }}"><div style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 10px; padding: 32px 16px; text-align: center; color: #5B6967">No records match. Clear a filter or change the month.</div></sc-if>
+      <sc-if value="{{none}}" hint-placeholder-val="{{ false }}"><div style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 10px; padding: 32px 16px; text-align: center; color: #5B6967">No records match. Clear a filter or change the period.</div></sc-if>
     </div>
   </main>
   <nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: #FFFFFF; border-top: 1px solid #D9E0DE; padding: 4px 2px 20px"><a href="Home.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></span>Home</a><a href="Records.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #0B6E73; font-weight: 600"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span>Records</a><a href="Inbox.html" aria-label="Inbox, 4 items" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h5l1.5 3h5l1.5-3h5M5.5 5h13L21 13v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/></svg><span aria-hidden="true" style="position: absolute; top: -4px; left: 14px; min-width: 17px; height: 17px; padding: 0 5px; box-sizing: border-box; border-radius: 9px; background: #9A6212; color: #FFFFFF; font-size: 10px; font-weight: 700; line-height: 17px; text-align: center">4</span></span>Inbox</a><a href="Main.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></svg></span>Ask</a><a href="More.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></span>More</a></nav>
 </div></template>
 <script type="text/plain" id="ll-logic" data-props='{}'>
 class Component extends DCLogic {
-  state = { q: '', type: 'all', cat: '', month: '2026-09' };
+  state = { q: '', type: 'all', cat: '', src: '', month: '2026-09', period: 'month', from: '2026-09-01', to: '2026-09-15', selecting: false };
   seg(list, cur, key) {
     return list.map(([k, l]) => ({ label: l, on: String(k === cur), bg: k === cur ? '#FFFFFF' : 'transparent',
       shadow: k === cur ? '0 1px 2px rgba(0,0,0,.12)' : 'none', pick: () => this.setState({ [key]: k }) }));
@@ -89,8 +98,12 @@ class Component extends DCLogic {
     const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     const inr = n => '₹' + Math.round(n).toLocaleString('en-IN');
     const s = this.state, q = s.q.trim().toLowerCase();
-    const list = ALL.filter(r => r.month === s.month && (!q || r.name.toLowerCase().includes(q)) &&
-      (s.type === 'all' || (s.type === 'review' ? r.cat === 'none' : s.type === 'llm' ? r.llm : r.dir === s.type)) && (!s.cat || r.cat === s.cat));
+    // The demo ledger ends on 30 Sep 2026: the 7, 30 and 90 day periods count back from that day.
+    const START = { '7d': '2026-09-24', '30d': '2026-09-01', '90d': '2026-07-03', '365d': '2025-10-01' };
+    const inPeriod = r => s.period === 'month' ? r.month === s.month : s.period === 'range' ? (!s.from || r.date >= s.from) && (!s.to || r.date <= s.to)
+      : s.period === 'all' || r.date >= START[s.period];
+    const list = ALL.filter(r => inPeriod(r) && (!q || r.name.toLowerCase().includes(q)) &&
+      (s.type === 'all' || (s.type === 'review' ? r.cat === 'none' : s.type === 'llm' ? r.llm : r.dir === s.type)) && (!s.cat || r.cat === s.cat) && (!s.src || r.src === s.src));
     const byDay = {};
     list.forEach(r => (byDay[r.date] ||= []).push(r));
     const days = Object.keys(byDay).sort().reverse().map(d => { const x = new Date(d + 'T00:00');
@@ -99,9 +112,21 @@ class Component extends DCLogic {
         rows: byDay[d].map((r, i) => ({ ...r, plain: !r.link, border: i ? '1px solid #D9E0DE' : '0' })) }; });
     const months = [['2026-09', 'Sep 2026'], ['2026-08', 'Aug 2026'], ['2026-07', 'Jul 2026']].map(([k, l]) => ({ label: l, on: String(k === s.month),
       bg: k === s.month ? '#15201F' : '#FFFFFF', fg: k === s.month ? '#F2F5F4' : '#15201F', bd: k === s.month ? '#15201F' : '#D9E0DE', pick: () => this.setState({ month: k }) }));
-    return { q: s.q, onQ: ev => this.setState({ q: ev.target.value }), onCat: ev => this.setState({ cat: ev.target.value }),
+    const periods = [['month', 'Month'], ['7d', '7 days'], ['30d', '30 days'], ['90d', '3 months'], ['365d', '1 year'], ['all', 'All'], ['range', 'Custom']].map(([k, l]) => ({ label: l, on: String(k === s.period),
+      bg: k === s.period ? '#15201F' : '#FFFFFF', fg: k === s.period ? '#F2F5F4' : '#15201F', bd: k === s.period ? '#15201F' : '#D9E0DE', pick: () => this.setState({ period: k }) }));
+    const dshort = d => { const x = new Date(d + 'T00:00'); return x.getDate() + ' ' + MON[x.getMonth()] + (x.getFullYear() !== 2026 ? ' ' + x.getFullYear() : ''); };
+    const label = s.period === 'month' ? months.find(m => m.on === 'true').label : s.period === 'all' ? 'all time'
+      : s.period === 'range' ? (s.from && s.to ? dshort(s.from) + ' – ' + dshort(s.to) : s.from ? 'from ' + dshort(s.from) : s.to ? 'up to ' + dshort(s.to) : 'any date')
+      : dshort(START[s.period]) + ' – ' + dshort('2026-09-30');
+    const refunded = list.filter(r => r.dir === 'in' && (r.cat === 'refund' || r.cat === 'transport')).reduce((a, r) => a + r.v, 0);
+    return { q: s.q, onQ: ev => this.setState({ q: ev.target.value }), onCat: ev => this.setState({ cat: ev.target.value }), onSrc: ev => this.setState({ src: ev.target.value }),
+      periods, isMonth: s.period === 'month', isRange: s.period === 'range', from: s.from, to: s.to,
+      onFrom: ev => this.setState({ from: ev.target.value }), onTo: ev => this.setState({ to: ev.target.value }),
+      selecting: String(s.selecting), selLabel: s.selecting ? 'Done' : 'Select', toggleSel: () => this.setState({ selecting: !s.selecting }),
+      selBg: s.selecting ? '#15201F' : '#FFFFFF', selFg: s.selecting ? '#F2F5F4' : '#15201F', selBd: s.selecting ? '#15201F' : '#D9E0DE',
+      refunded: refunded > 0 ? inr(refunded) : '',
       types: this.seg([["all", "All"], ["out", "Debits"], ["in", "Credits"], ["review", "Needs review"], ["llm", "By model"]], s.type, 'type'), months, days, none: !days.length,
-      count: list.length + ' record' + (list.length === 1 ? '' : 's') + ' · ' + months.find(m => m.on === 'true').label,
+      count: list.length + ' record' + (list.length === 1 ? '' : 's') + ' · ' + label,
       out: inr(list.filter(r => r.dir === 'out').reduce((a, r) => a + r.v, 0)), inn: inr(list.filter(r => r.dir === 'in').reduce((a, r) => a + r.v, 0)) };
   }
 }

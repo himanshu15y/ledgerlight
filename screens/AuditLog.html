@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit log · Ledgerlight prototype</title>
+<style>
+body{margin:0}
+a{color:#0B6E73}a:hover{color:#08575B}
+</style>
+<style>
+html{background:#E4EAE8}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px 0 32px;box-sizing:border-box;
+ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif}
+.ll-bar{width:390px;max-width:100%;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#3F4B49}
+.ll-bar a{color:#0B6E73;text-decoration:none;font-weight:600}
+.ll-phone{border-radius:28px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.08),0 12px 40px rgba(16,40,38,.18);background:#F2F5F4}
+@media (max-width:420px){body{padding:0}.ll-bar{padding:10px 12px;box-sizing:border-box}.ll-phone{border-radius:0;box-shadow:none}}
+html.thumb,html.thumb body{background:#F2F5F4;padding:0;display:block;min-height:0}
+html.thumb .ll-bar{display:none}
+/* Rows inside the scrolling main must keep their height (chip rows use overflow-x). */
+.ll-phone main > *{flex-shrink:0}
+html.thumb .ll-phone{border-radius:0;box-shadow:none}
+.ll-au summary{list-style:none}
+.ll-au summary::-webkit-details-marker{display:none}
+</style>
+<script>if(location.hash==='#thumb')document.documentElement.classList.add('thumb')</script>
+</head>
+<body>
+<div class="ll-bar"><a href="../index.html">← All screens</a><span>Audit log</span></div>
+<div class="ll-phone">
+<template id="ll-tpl"><div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F5F4; color: #15201F; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-size: 15px; line-height: 1.45; display: flex; flex-direction: column; overflow: hidden">
+  <header style="background: #FFFFFF; border-bottom: 1px solid #D9E0DE; display: flex; flex-direction: column; gap: 10px; padding: 12px 16px 10px">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <span aria-hidden="true" style="flex: none; width: 22px; height: 22px; border-radius: 6px; background: #0B6E73; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">₹</span>
+      <a href="More.html" aria-label="Back" style="flex: none; width: 36px; height: 40px; margin-left: -6px; display: flex; align-items: center; justify-content: center; color: #15201F; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <h1 style="margin: 0; flex-grow: 1; min-width: 0; font-family: ui-rounded, 'SF Pro Rounded', -apple-system, 'Segoe UI', system-ui, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Audit log</h1>
+    </div>
+    
+  </header>
+  <main style="flex-grow: 1; min-height: 0; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 16px">
+    <div role="group" aria-label="Show" style="display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 0 32px 2px 16px; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent)">
+      <sc-for list="{{kinds}}" as="k" hint-placeholder-count="5"><button type="button" onClick="{{k.pick}}" aria-pressed="{{k.on}}" style="flex: none; border: 1px solid {{k.bd}}; background: {{k.bg}}; color: {{k.fg}}; border-radius: 99px; padding: 6px 13px; font: inherit; font-size: 13px; white-space: nowrap">{{k.label}}</button></sc-for>
+    </div>
+    <label style="display: flex; align-items: center; gap: 8px; background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 10px; padding: 0 12px">
+      <input type="search" placeholder="Search the log, e.g. a tag or file name" aria-label="Search the log" autocomplete="off" value="{{q}}" onChange="{{onQ}}" style="border: 0; background: none; padding: 11px 0; flex-grow: 1; min-width: 0; font: inherit; font-size: 16px; color: #15201F; outline: none">
+    </label>
+    <p style="margin: 0; font-size: 13px; color: #5B6967">{{count}}</p>
+    <div style="display: flex; flex-direction: column">
+      <sc-for list="{{days}}" as="d" hint-placeholder-count="1">
+        <div style="display: flex; justify-content: space-between; padding: 14px 4px 6px; font-size: 13px; color: #5B6967; font-weight: 600"><span>{{d.label}}</span><span>{{d.n}}</span></div>
+        <div style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 10px; overflow: hidden">
+          <sc-for list="{{d.rows}}" as="x" hint-placeholder-count="3">
+            <details class="ll-au" style="border-top: {{x.border}}"><summary style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px; padding: 10px 12px; cursor: pointer"><span style="font-size: 12px; color: #5B6967; padding-top: 2px; font-variant-numeric: tabular-nums">{{x.time}}</span>
+              <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 14px; overflow-wrap: anywhere; color: {{x.color}}">{{x.summary}}</span><span style="font-size: 12px; color: #5B6967">{{x.kindName}} · {{x.via}}<sc-if value="{{x.failed}}" hint-placeholder-val="{{ false }}"> · <b>failed</b></sc-if></span></span></summary>
+              <pre style="margin: 0 12px 12px 64px; padding: 8px 10px; background: #E8EDEB; border-radius: 6px; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 11px; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 280px; overflow: auto">{{x.detail}}</pre></details>
+          </sc-for>
+        </div>
+      </sc-for>
+      <sc-if value="{{none}}" hint-placeholder-val="{{ false }}"><div style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 10px; padding: 32px 16px; text-align: center; color: #5B6967">No changes logged yet. Every change you make from now on shows here.</div></sc-if>
+    </div>
+  </main>
+  <nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: #FFFFFF; border-top: 1px solid #D9E0DE; padding: 4px 2px 20px"><a href="Home.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></span>Home</a><a href="Records.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span>Records</a><a href="Inbox.html" aria-label="Inbox, 4 items" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h5l1.5 3h5l1.5-3h5M5.5 5h13L21 13v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/></svg><span aria-hidden="true" style="position: absolute; top: -4px; left: 14px; min-width: 17px; height: 17px; padding: 0 5px; box-sizing: border-box; border-radius: 9px; background: #9A6212; color: #FFFFFF; font-size: 10px; font-weight: 700; line-height: 17px; text-align: center">4</span></span>Inbox</a><a href="Main.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></svg></span>Ask</a><a href="More.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #0B6E73; font-weight: 600"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></span>More</a></nav>
+</div></template>
+<script type="text/plain" id="ll-logic" data-props='{}'>
+class Component extends DCLogic {
+  state = { kind: '', q: '' };
+  renderVals() {
+    // Invented test entries: the demo imports of 20 Oct 2026 (see Import) and a few changes after them.
+    const LOG = [
+      { at: '2026-10-20 18:40', kind: 'backups', via: 'Mac', ok: true, summary: 'Made a backup: ledger-20261020-184000.db.gz',
+        detail: { request: {}, path: {}, status: 200, result: { file: 'ledger-20261020-184000.db.gz' } } },
+      { at: '2026-10-20 18:31', kind: 'settings', via: 'Mac', ok: true, summary: 'Changed setting llm_min_confidence to 0.9',
+        detail: { request: { value: 0.9 }, path: { key: 'llm_min_confidence' }, status: 200, result: { ok: true } } },
+      { at: '2026-10-20 18:25', kind: 'tags', via: 'iPhone', ok: true, summary: 'Added tag #flights on 3 records',
+        detail: { request: { record_ids: [61, 118, 203], add_tags: ['flights'] }, path: {}, status: 200, result: { changed: 3 } } },
+      { at: '2026-10-20 18:20', kind: 'records', via: 'iPhone', ok: true, summary: 'Put Sri Dunmore Stores in groceries and saved a merchant rule',
+        detail: { request: { entity: 'Sri Dunmore Stores', category: 'groceries', rule: 'merchant' }, path: {}, status: 200, result: { records: 15 } } },
+      { at: '2026-10-20 08:53', kind: 'files', via: 'Mac', ok: true, summary: 'Imported demo_card_0003.pdf: 34 new records, 0 duplicates skipped (otherbank-cc)',
+        detail: { file: 'demo_card_0003.pdf', status: 'imported', source: 'otherbank-cc', profile: 'demo_card_pdf', rows_new: 34, rows_duplicate: 0, links_created: 0, message: null } },
+      { at: '2026-10-20 08:53', kind: 'files', via: 'Mac', ok: true, summary: 'Imported demo_card_0002.pdf: 68 new records, 0 duplicates skipped (testbank-rewards)',
+        detail: { file: 'demo_card_0002.pdf', status: 'imported', source: 'testbank-rewards', profile: 'demo_card_pdf', rows_new: 68, rows_duplicate: 0, links_created: 0, message: null } },
+      { at: '2026-10-20 08:53', kind: 'files', via: 'Mac', ok: true, summary: 'Imported demo_card_0001.pdf: 60 new records, 0 duplicates skipped (testbank-platinum)',
+        detail: { file: 'demo_card_0001.pdf', status: 'imported', source: 'testbank-platinum', profile: 'demo_card_pdf', rows_new: 60, rows_duplicate: 0, links_created: 0, message: null } },
+      { at: '2026-10-20 08:53', kind: 'files', via: 'Mac', ok: true, summary: 'Imported demo_testbank_savings.xls: 84 new records, 0 duplicates skipped (testbank-savings)',
+        detail: { file: 'demo_testbank_savings.xls', status: 'imported', source: 'testbank-savings', profile: 'demo_savings_xls', rows_new: 84, rows_duplicate: 0, links_created: 0, message: null } },
+      { at: '2026-10-20 08:52', kind: 'passwords', via: 'Mac', ok: true, summary: 'Saved a PDF password with the label “Other Bank” (the password is not logged)',
+        detail: { request: { label: 'Other Bank', password: '(hidden)' }, path: {}, status: 200, result: { ok: true } } },
+      { at: '2026-10-20 08:51', kind: 'files', via: 'Mac', ok: false, summary: 'Uploaded demo_card_0003.pdf: it needs a PDF password, nothing imported',
+        detail: { file: 'demo_card_0003.pdf', status: 'password_required', source: null, profile: null, rows_new: 0, rows_duplicate: 0, links_created: 0, message: 'The PDF is locked.' } }];
+    const KINDS = [['', 'All'], ['files', 'Files'], ['tags', 'Tags'], ['links', 'Links'], ['records', 'Records'], ['rules', 'Rules'],
+      ['settings', 'Settings'], ['ai', 'AI'], ['backups', 'Backups'], ['passwords', 'Passwords'], ['other', 'Other']];
+    const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const plural = (n, w) => n + ' ' + w + (n === 1 ? '' : 's');
+    const s = this.state, q = s.q.trim().toLowerCase();
+    const counts = {}; LOG.forEach(x => { counts[x.kind] = (counts[x.kind] || 0) + 1; });
+    const list = LOG.filter(x => (!s.kind || x.kind === s.kind) && (!q || (x.summary + JSON.stringify(x.detail)).toLowerCase().includes(q)));
+    const byDay = {}; list.forEach(x => (byDay[x.at.slice(0, 10)] ||= []).push(x));
+    const days = Object.keys(byDay).map(d => { const t = new Date(d + 'T00:00');
+      return { label: DOW[t.getDay()] + ', ' + t.getDate() + ' ' + MON[t.getMonth()] + ' ' + t.getFullYear(), n: plural(byDay[d].length, 'change'),
+        rows: byDay[d].map((x, i) => ({ time: x.at.slice(11, 16), summary: x.summary, kindName: KINDS.find(k => k[0] === x.kind)[1], via: x.via,
+          failed: !x.ok, color: x.ok ? '#15201F' : '#B23A3A', border: i ? '1px solid #D9E0DE' : '0', detail: JSON.stringify(x.detail, null, 2) })) }; });
+    const kinds = KINDS.filter(([k]) => !k || counts[k]).map(([k, l]) => { const on = s.kind === k;
+      return { label: l + ' ' + (k ? counts[k] : LOG.length), on: String(on), bg: on ? '#15201F' : '#FFFFFF', fg: on ? '#F2F5F4' : '#15201F', bd: on ? '#15201F' : '#D9E0DE',
+        pick: () => this.setState({ kind: k }) }; });
+    return { kinds, days, none: !days.length, q: s.q, onQ: ev => this.setState({ q: ev.target.value }),
+      count: plural(list.length, 'change') + (s.kind || q ? ' match' : '') + '. Newest first. Tap a change to see its details.' };
+  }
+}
+</script>
+<div id="ll-root"></div>
+<script src="../assets/ll-runtime.js"></script>
+</div>
+</body>
+</html>
