@@ -18,6 +18,8 @@ body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:ce
 @media (max-width:420px){body{padding:0}.ll-bar{padding:10px 12px;box-sizing:border-box}.ll-phone{border-radius:0;box-shadow:none}}
 html.thumb,html.thumb body{background:#F2F5F4;padding:0;display:block;min-height:0}
 html.thumb .ll-bar{display:none}
+/* Rows inside the scrolling main must keep their height (chip rows use overflow-x). */
+.ll-phone main > *{flex-shrink:0}
 html.thumb .ll-phone{border-radius:0;box-shadow:none}
 </style>
 <script>if(location.hash==='#thumb')document.documentElement.classList.add('thumb')</script>
@@ -25,52 +27,66 @@ html.thumb .ll-phone{border-radius:0;box-shadow:none}
 <body>
 <div class="ll-bar"><a href="../index.html">← All screens</a><span>Suggestion chat</span></div>
 <div class="ll-phone">
-<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F5F4; color: #15201F; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-size: 15px; display: flex; flex-direction: column; overflow: hidden">
-  <header style="background: #FFFFFF; border-bottom: 1px solid #D9E0DE; display: flex; flex-direction: column; gap: 10px; padding: 18px 16px 12px">
+<template id="ll-tpl"><div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F5F4; color: #15201F; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-size: 15px; line-height: 1.45; display: flex; flex-direction: column; overflow: hidden">
+  <header style="background: #FFFFFF; border-bottom: 1px solid #D9E0DE; display: flex; flex-direction: column; gap: 10px; padding: 12px 16px 10px">
     <div style="display: flex; align-items: center; gap: 10px">
-      <a href="Suggestions.html" style="font-size: 14px; text-decoration: none; padding: 8px 4px; white-space: nowrap">← Suggestions</a>
-      <h1 style="margin: 0; font-size: 20px; font-family: ui-rounded, 'SF Pro Rounded', -apple-system, system-ui, sans-serif">Chat</h1>
-      <span style="margin-left: auto; font-size: 11px; color: #4A3D8F; background: #EEEAF9; border-radius: 999px; padding: 2px 8px">Local AI</span>
+      <span aria-hidden="true" style="flex: none; width: 22px; height: 22px; border-radius: 6px; background: #0B6E73; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">₹</span>
+      <a href="Suggestions.html" aria-label="Back" style="flex: none; width: 36px; height: 40px; margin-left: -6px; display: flex; align-items: center; justify-content: center; color: #15201F; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <h1 style="margin: 0; flex-grow: 1; min-width: 0; font-family: ui-rounded, 'SF Pro Rounded', -apple-system, 'Segoe UI', system-ui, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Chat</h1>
     </div>
-    <section aria-label="The suggestion" style="background: #F7F5FD; border: 1px solid #C9C2E6; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
-      <span style="font-size: 11px; font-weight: 700; color: #4A3D8F; letter-spacing: 0.04em">CATEGORY</span>
-      <span style="font-size: 14px">Put <span style="font-family: ui-monospace, Menlo, monospace; font-size: 13px">SRI BRIGHTWAY STORES</span> in <b>Groceries</b></span>
-      <div style="display: flex; gap: 8px">
-        <button type="button" style="font: inherit; font-size: 14px; font-weight: 600; background: #0B6E73; color: #FFFFFF; border: 0; border-radius: 10px; padding: 0 14px; min-height: 44px">Accept</button>
-        <button type="button" style="font: inherit; font-size: 14px; background: #FFFFFF; color: #15201F; border: 1px solid #D9E0DE; border-radius: 10px; padding: 0 14px; min-height: 44px">Other category</button>
-        <button type="button" style="font: inherit; font-size: 14px; background: transparent; color: #5B6967; border: 0; padding: 0 8px; min-height: 44px; margin-left: auto">Dismiss</button>
-      </div>
-    </section>
+    
   </header>
-
-  <main style="flex-grow: 1; min-height: 0; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px">
-    <div style="align-self: flex-start; max-width: 88%; background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 14px 14px 14px 4px; padding: 10px 13px; display: flex; flex-direction: column; gap: 10px">
-      <span>I suggest <b>Groceries</b>. This shop has 12 records from 2 Jul to 18 Oct. Amounts are ₹187 to ₹1,450, mostly between 7 and 9 pm. You put 3 shops with the same pattern in Groceries.</span>
-      <div style="display: flex; flex-direction: column; border: 1px solid #ECF0EF; border-radius: 10px">
-        <div style="display: flex; justify-content: space-between; padding: 8px 10px; font-size: 13px"><span>Sat, 18 Oct · 8:12 pm</span><span style="font-variant-numeric: tabular-nums">₹1,450</span></div>
-        <div style="display: flex; justify-content: space-between; padding: 8px 10px; font-size: 13px; border-top: 1px solid #ECF0EF"><span>Tue, 7 Oct · 7:40 pm</span><span style="font-variant-numeric: tabular-nums">₹627</span></div>
-        <a href="Records.html" style="padding: 9px 10px; font-size: 13px; font-weight: 600; text-decoration: none; border-top: 1px solid #ECF0EF">See all 12 in Records →</a>
-      </div>
+  <main style="flex-grow: 1; min-height: 0; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 16px">
+    <section style="background: #F7F5FD; border: 1px solid #C9C2E6; border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 12px; font-weight: 700; color: #5B4BA8">Category</span>
+      <span style="font-size: 15px; font-weight: 500">Put Sri Dunmore Stores in Groceries</span>
+      <sc-if value="{{done}}" hint-placeholder-val="{{ false }}"><span style="color: #24794A; font-weight: 500">✓ {{done}}</span></sc-if>
+      <sc-if value="{{notDone}}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+        <button type="button" onClick="{{accept}}" style="border: 0; border-radius: 9px; padding: 9px 14px; font: inherit; font-size: 14px; font-weight: 600; background: #0B6E73; color: #FFFFFF">Groceries</button>
+        <a href="Records.html" style="display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 9px; padding: 7px 12px; font: inherit; font-size: 13px; font-weight: 600; background: #E8EDEB; color: #15201F; text-decoration: none; white-space: nowrap">See records</a>
+        <a href="Suggestions.html" style="margin-left: auto; font-size: 14px; color: #5B6967; text-decoration: none; padding: 8px">Dismiss</a></div></sc-if>
+    </section>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <sc-for list="{{thread}}" as="m" hint-placeholder-count="2">
+        <sc-if value="{{m.me}}" hint-placeholder-val="{{ false }}"><div style="align-self: flex-end; max-width: 85%; background: #D4ECE6; border-radius: 14px 14px 4px 14px; padding: 10px 13px; white-space: pre-wrap">{{m.text}}</div></sc-if>
+        <sc-if value="{{m.ai}}" hint-placeholder-val="{{ true }}"><div style="align-self: flex-start; max-width: 88%; background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 14px 14px 14px 4px; padding: 10px 13px; white-space: pre-wrap">{{m.text}}</div></sc-if>
+        <sc-if value="{{m.ev}}" hint-placeholder-val="{{ false }}"><div style="max-width: 88%; background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 10px; overflow: hidden">
+          <sc-for list="{{evidence}}" as="r" hint-placeholder-count="3"><div style="display: flex; justify-content: space-between; gap: 10px; padding: 9px 12px; border-top: {{r.border}}"><span><span style="display: block; font-weight: 500">{{r.name}}</span><span style="font-size: 12px; color: #5B6967">{{r.date}}</span></span><span style="font-weight: 600; font-variant-numeric: tabular-nums">{{r.amt}}</span></div></sc-for>
+          <a href="Records.html" style="display: block; padding: 9px 12px; border-top: 1px solid #D9E0DE; font-size: 13px; font-weight: 600; text-decoration: none">See all 15 in Records</a></div></sc-if>
+      </sc-for>
     </div>
-
-    <div style="align-self: flex-end; max-width: 80%; background: #D4ECE6; border-radius: 14px 14px 4px 14px; padding: 10px 13px">Could it be a medical store?</div>
-
-    <div style="align-self: flex-start; max-width: 88%; background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 14px 14px 14px 4px; padding: 10px 13px">That is less likely. Your medical stores have amounts under ₹1,700 and "pharma" or "medical" in the name. This shop has 4 records above ₹1,700. If it is a medical store, tap <b>Other category</b> and pick Health.</div>
-
-    <div role="group" aria-label="Ask next" style="display: flex; flex-wrap: wrap; gap: 6px">
-      <button type="button" style="font: inherit; font-size: 13px; background: #FFFFFF; color: #0B5357; border: 1px solid #B8D9D9; border-radius: 999px; padding: 8px 12px; min-height: 36px">Make it a rule</button>
-      <button type="button" style="font: inherit; font-size: 13px; background: #FFFFFF; color: #0B5357; border: 1px solid #B8D9D9; border-radius: 999px; padding: 8px 12px; min-height: 36px">Which other shops look the same?</button>
-      <button type="button" style="font: inherit; font-size: 13px; background: #FFFFFF; color: #0B5357; border: 1px solid #B8D9D9; border-radius: 999px; padding: 8px 12px; min-height: 36px">How much did I spend there?</button>
-    </div>
+    <sc-if value="{{hasChips}}" hint-placeholder-val="{{ true }}"><div role="group" aria-label="Ask next" style="display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{chips}}" as="c" hint-placeholder-count="3"><button type="button" onClick="{{c.ask}}" style="border: 1px solid #D9E0DE; background: #FFFFFF; border-radius: 99px; padding: 6px 13px; font: inherit; font-size: 13px; color: #15201F">{{c.text}}</button></sc-for></div></sc-if>
     <p style="margin: 0; font-size: 12px; color: #5B6967">Answered by qwen2.5:7b on this laptop. The chat does not leave your devices.</p>
+    <div style="position: sticky; bottom: 0; display: flex; gap: 8px; align-items: center; background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 14px; padding: 8px">
+      <input aria-label="Ask about this suggestion" placeholder="Ask about this suggestion" value="{{draft}}" onChange="{{onDraft}}" onKeyDown="{{onKey}}" style="flex-grow: 1; min-width: 0; border: 1px solid #D9E0DE; background: #F2F5F4; border-radius: 22px; padding: 10px 14px; font: inherit; font-size: 16px; color: #15201F">
+      <button type="button" onClick="{{send}}" style="border: 0; border-radius: 9px; padding: 10px 14px; font: inherit; font-weight: 600; background: #0B6E73; color: #FFFFFF">Send</button>
+    </div>
   </main>
-
-  <form style="display: flex; gap: 8px; align-items: center; background: #FFFFFF; border-top: 1px solid #D9E0DE; padding: 10px 12px 26px">
-    <label for="chat-q" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Ask about this suggestion</label>
-    <input id="chat-q" type="text" placeholder="Ask about this suggestion" style="font: inherit; flex-grow: 1; min-width: 0; min-height: 44px; box-sizing: border-box; border: 1px solid #D9E0DE; border-radius: 22px; padding: 0 16px; background: #F7F9F8; color: #15201F">
-    <button type="button" aria-label="Send" style="width: 44px; height: 44px; border-radius: 22px; border: 0; background: #0B6E73; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
-  </form>
-</div>
+  <nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: #FFFFFF; border-top: 1px solid #D9E0DE; padding: 4px 2px 20px"><a href="Home.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #0B6E73; font-weight: 600"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></span>Home</a><a href="Records.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span>Records</a><a href="Inbox.html" aria-label="Inbox, 4 items" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h5l1.5 3h5l1.5-3h5M5.5 5h13L21 13v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/></svg><span aria-hidden="true" style="position: absolute; top: -4px; left: 14px; min-width: 17px; height: 17px; padding: 0 5px; box-sizing: border-box; border-radius: 9px; background: #9A6212; color: #FFFFFF; font-size: 10px; font-weight: 700; line-height: 17px; text-align: center">4</span></span>Inbox</a><a href="Main.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></svg></span>Ask</a><a href="More.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></span>More</a></nav>
+</div></template>
+<script type="text/plain" id="ll-logic" data-props='{}'>
+class Component extends DCLogic {
+  state = { msgs: [], draft: '', done: '' };
+  ask(text) {
+    const R = {"Make it a rule": "Tap \"Groceries\" above and the app saves the rule: every Sri Dunmore Stores record goes to Groceries, now and in new imports.", "Which other shops look the same?": "Juniper and Bigbasket have the same pattern: many small payments each month, all in Groceries.", "How much did I spend there?": "₹6,120 in 15 records from Jul to Sep, about ₹2,047 a month."};
+    const reply = R[text] || 'In the app the local model answers this from the numbers of this suggestion. This prototype keeps its answers short.';
+    this.setState({ msgs: [...this.state.msgs, { me: true, text }, { me: false, text: reply }], draft: '' });
+  }
+  renderVals() {
+    const s = this.state, used = s.msgs.filter(m => m.me).map(m => m.text);
+    const thread = [{ me: false, text: "I suggest Groceries. Sri Dunmore Stores has 15 records from 3 Jul to 28 Sep, ₹6,120 in total. The amounts are small and regular, like your other grocery shops.", ev: true }, ...s.msgs].map(m => ({ text: m.text, me: !!m.me, ai: !m.me, ev: !!m.ev }));
+    const chips = ["Make it a rule", "Which other shops look the same?", "How much did I spend there?"].filter(t => !used.includes(t)).map(t => ({ text: t, ask: () => this.ask(t) }));
+    return { thread, evidence: [{"id": 75, "name": "Sri Dunmore Stores", "date": "Mon, 28 Sep 2026", "amt": "₹637"}, {"id": 78, "name": "Sri Dunmore Stores", "date": "Fri, 18 Sep 2026", "amt": "₹627"}, {"id": 76, "name": "Sri Dunmore Stores", "date": "Fri, 18 Sep 2026", "amt": "₹157"}].map((r, i) => ({ ...r, border: i ? '1px solid #D9E0DE' : '0' })), chips, hasChips: chips.length > 0,
+      draft: s.draft, onDraft: ev => this.setState({ draft: ev.target.value }),
+      onKey: ev => { if (ev.key === 'Enter' && s.draft.trim()) this.ask(s.draft.trim()); },
+      send: () => { if (s.draft.trim()) this.ask(s.draft.trim()); },
+      done: s.done, notDone: !s.done, accept: () => this.setState({ done: "15 records of Sri Dunmore Stores are now in Groceries." }) };
+  }
+}
+</script>
+<div id="ll-root"></div>
+<script src="../assets/ll-runtime.js"></script>
 </div>
 </body>
 </html>

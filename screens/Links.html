@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Links: not matched yet · Ledgerlight prototype</title>
+<title>Links · Ledgerlight prototype</title>
 <style>
 body{margin:0}
 a{color:#0B6E73}a:hover{color:#08575B}
@@ -18,65 +18,71 @@ body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:ce
 @media (max-width:420px){body{padding:0}.ll-bar{padding:10px 12px;box-sizing:border-box}.ll-phone{border-radius:0;box-shadow:none}}
 html.thumb,html.thumb body{background:#F2F5F4;padding:0;display:block;min-height:0}
 html.thumb .ll-bar{display:none}
+/* Rows inside the scrolling main must keep their height (chip rows use overflow-x). */
+.ll-phone main > *{flex-shrink:0}
 html.thumb .ll-phone{border-radius:0;box-shadow:none}
 </style>
 <script>if(location.hash==='#thumb')document.documentElement.classList.add('thumb')</script>
 </head>
 <body>
-<div class="ll-bar"><a href="../index.html">← All screens</a><span>Links: not matched yet</span></div>
+<div class="ll-bar"><a href="../index.html">← All screens</a><span>Links</span></div>
 <div class="ll-phone">
-<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F5F4; color: #15201F; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-size: 15px; display: flex; flex-direction: column; overflow: hidden">
-  <header style="display: flex; align-items: center; gap: 10px; padding: 18px 16px 12px; background: #FFFFFF; border-bottom: 1px solid #D9E0DE">
-    <a href="Inbox.html" style="font-size: 14px; text-decoration: none; padding: 8px 4px">← Inbox</a>
-    <h1 style="margin: 0; font-size: 20px; font-family: ui-rounded, 'SF Pro Rounded', -apple-system, system-ui, sans-serif">Links</h1>
-  </header>
-  <main style="flex-grow: 1; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
-    <div role="group" aria-label="Show" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #E8EDEB; border-radius: 10px; padding: 3px; gap: 3px">
-      <button type="button" aria-pressed="true" style="font: inherit; font-size: 14px; font-weight: 600; background: #FFFFFF; color: #15201F; border: 0; border-radius: 8px; padding: 8px 4px; min-height: 40px">Refunds · 3</button>
-      <button type="button" aria-pressed="false" style="font: inherit; font-size: 14px; background: transparent; color: #3F4B49; border: 0; border-radius: 8px; padding: 8px 4px; min-height: 40px">Payments · 1</button>
-      <button type="button" aria-pressed="false" style="font: inherit; font-size: 14px; background: transparent; color: #3F4B49; border: 0; border-radius: 8px; padding: 8px 4px; min-height: 40px">Linked</button>
+<template id="ll-tpl"><div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F5F4; color: #15201F; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-size: 15px; line-height: 1.45; display: flex; flex-direction: column; overflow: hidden">
+  <header style="background: #FFFFFF; border-bottom: 1px solid #D9E0DE; display: flex; flex-direction: column; gap: 10px; padding: 12px 16px 10px">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <span aria-hidden="true" style="flex: none; width: 22px; height: 22px; border-radius: 6px; background: #0B6E73; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">₹</span>
+      <a href="Inbox.html" aria-label="Back" style="flex: none; width: 36px; height: 40px; margin-left: -6px; display: flex; align-items: center; justify-content: center; color: #15201F; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <h1 style="margin: 0; flex-grow: 1; min-width: 0; font-family: ui-rounded, 'SF Pro Rounded', -apple-system, 'Segoe UI', system-ui, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Links</h1>
     </div>
-    <p style="margin: 0; font-size: 13px; color: #5B6967">Credits with no purchase yet. Each one shows its best match: tap Link, or pick another.</p>
-
-    <section style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
-      <a href="Refund.html" style="display: flex; justify-content: space-between; gap: 8px; text-decoration: none; color: #15201F"><span><b>Brisa ›</b><br><span style="font-size: 12px; color: #5B6967">Credit · 12 Sep · Test card ··0001</span></span><b style="color: #24794A; font-variant-numeric: tabular-nums">+₹1,299</b></a>
-      <div style="background: #F2F5F4; border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px">
-        <span style="font-size: 12px; color: #5B6967">Best match · same shop, 7 days before</span>
-        <span style="display: flex; justify-content: space-between"><span>Brisa · 5 Sep</span><span style="font-variant-numeric: tabular-nums">₹2,499</span></span>
-      </div>
-      <div style="display: flex; gap: 8px">
-        <a href="RefundDone.html" style="flex-grow: 1; text-align: center; background: #0B6E73; color: #FFFFFF; text-decoration: none; font-weight: 600; border-radius: 10px; padding: 11px 8px">Link ₹1,299</a>
-        <a href="Match.html" style="text-align: center; background: #FFFFFF; border: 1px solid #D9E0DE; color: #15201F; text-decoration: none; border-radius: 10px; padding: 11px 12px">Other…</a>
-        <button type="button" style="font: inherit; background: #FFFFFF; border: 1px solid #D9E0DE; color: #5B6967; border-radius: 10px; padding: 0 12px">Not a refund</button>
-      </div>
-    </section>
-
-    <section style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
-      <div style="display: flex; justify-content: space-between; gap: 8px"><span><b>Northwind Vantro 10%</b><br><span style="font-size: 12px; color: #5B6967">Credit · 28 Sep · Test card ··0002</span></span><b style="color: #24794A; font-variant-numeric: tabular-nums">+₹62</b></div>
-      <div style="background: #F2F5F4; border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px">
-        <span style="font-size: 12px; color: #5B6967">Best match · 10% of this order</span>
-        <span style="display: flex; justify-content: space-between"><span>Northwind · 26 Sep</span><span style="font-variant-numeric: tabular-nums">₹627</span></span>
-      </div>
-      <div style="display: flex; gap: 8px">
-        <a href="RefundDone.html" style="flex-grow: 1; text-align: center; background: #0B6E73; color: #FFFFFF; text-decoration: none; font-weight: 600; border-radius: 10px; padding: 11px 8px">Link ₹62</a>
-        <a href="Match.html" style="text-align: center; background: #FFFFFF; border: 1px solid #D9E0DE; color: #15201F; text-decoration: none; border-radius: 10px; padding: 11px 12px">Other…</a>
-      </div>
-    </section>
-
-    <section style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
-      <div style="display: flex; justify-content: space-between; gap: 8px"><span><b>Tata 1mg</b><br><span style="font-size: 12px; color: #5B6967">Credit · 2 Oct · Test card ··0001</span></span><b style="color: #24794A; font-variant-numeric: tabular-nums">+₹261</b></div>
-      <p style="margin: 0; font-size: 13px; color: #9A6212">No purchase found in the 90 days before.</p>
-      <a href="Match.html" style="text-align: center; background: #FFFFFF; border: 1px solid #D9E0DE; color: #15201F; text-decoration: none; border-radius: 10px; padding: 11px 12px">Find a match…</a>
-    </section>
+    <div style="display: flex; flex-direction: column; gap: 10px"><div role="group" aria-label="Show" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px; background: #E8EDEB; border-radius: 9px; padding: 3px">
+      <sc-for list="{{tabs}}" as="s" hint-placeholder-count="3"><button type="button" onClick="{{s.pick}}" aria-pressed="{{s.on}}" style="border: 0; border-radius: 7px; padding: 7px 2px; font: inherit; font-size: 13px; font-weight: 500; color: #15201F; background: {{s.bg}}; box-shadow: {{s.shadow}}">{{s.label}}</button></sc-for></div></div>
+  </header>
+  <main style="flex-grow: 1; min-height: 0; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 16px">
+    <sc-if value="{{msg}}" hint-placeholder-val="{{ false }}"><div role="status" style="font-size: 13px; padding: 10px 12px; border-radius: 8px; background: #15201F; color: #F2F5F4">{{msg}}</div></sc-if>
+    <sc-if value="{{tRef}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 13px; color: #5B6967">Credits with no purchase yet. Each one shows its best match: tap Link, or pick another.</p>
+      <sc-for list="{{refunds}}" as="x" hint-placeholder-count="2"><section style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; justify-content: space-between; gap: 8px"><span style="min-width: 0"><b>{{x.name}}</b><br><span style="font-size: 12px; color: #5B6967">{{x.meta}}</span></span><b style="font-variant-numeric: tabular-nums; color: #24794A">{{x.amt}}</b></div>
+          <sc-if value="{{x.best}}" hint-placeholder-val="{{ true }}"><div style="background: #E8EDEB; border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column; gap: 3px; font-size: 13px">
+            <span style="font-size: 12px; color: #5B6967">{{x.bestMeta}}</span><span style="display: flex; justify-content: space-between; gap: 8px"><span>{{x.bestName}}</span><span style="font-variant-numeric: tabular-nums">{{x.bestAmt}}</span></span></div></sc-if>
+          <div style="display: flex; gap: 6px">
+            <button type="button" onClick="{{x.doLink}}" style="flex-grow: 1; border: 0; border-radius: 9px; padding: 9px 10px; font: inherit; font-size: 13px; font-weight: 600; background: #0B6E73; color: #FFFFFF; white-space: nowrap">{{x.link}}</button>
+            <a href="Match.html" style="border-radius: 9px; padding: 9px 10px; font-size: 13px; font-weight: 600; background: #E8EDEB; color: #15201F; text-decoration: none; white-space: nowrap">Other…</a>
+            <button type="button" onClick="{{x.notRef}}" style="border: 0; border-radius: 9px; padding: 9px 10px; font: inherit; font-size: 13px; font-weight: 600; background: #E8EDEB; color: #5B6967; white-space: nowrap">Not a refund</button>
+          </div></section></sc-for>
+      <sc-if value="{{noRef}}" hint-placeholder-val="{{ false }}"><div style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 10px; padding: 32px 16px; text-align: center; color: #5B6967">All refunds are matched.</div></sc-if></sc-if>
+    <sc-if value="{{tPay}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 13px; color: #5B6967">Own-money moves with no other side: card bill payments and transfers. Link both sides so they leave your spend.</p>
+      <div style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 10px; padding: 32px 16px; text-align: center; color: #5B6967">All payments are matched.</div></sc-if>
+    <sc-if value="{{tLinked}}" hint-placeholder-val="{{ false }}"><div style="background: #FFFFFF; border: 1px solid #D9E0DE; border-radius: 10px; overflow: hidden">
+      <sc-for list="{{linked}}" as="l" hint-placeholder-count="4"><div style="display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-top: {{l.border}}">
+        <span style="flex-grow: 1; min-width: 0"><span style="display: block; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{l.name}}</span><span style="font-size: 12px; color: #5B6967">{{l.meta}} · {{l.by}}</span></span>
+        <button type="button" onClick="{{l.unlink}}" style="border: 0; border-radius: 9px; padding: 5px 10px; font: inherit; font-size: 12px; font-weight: 600; background: #E8EDEB; color: #15201F">Unlink</button></div></sc-for></div></sc-if>
   </main>
-  <nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: #FFFFFF; border-top: 1px solid #D9E0DE; padding: 6px 4px 20px">
-    <a href="Home.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
-    <a href="Records.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Records</a>
-    <a href="Inbox.html" aria-current="page" aria-label="Inbox, 13 items" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #0B6E73; font-weight: 700; text-decoration: none"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13h5l1.5 3h5l1.5-3h5M5.5 5h13L21 13v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/></svg><span aria-hidden="true" style="position: absolute; top: -5px; left: 13px; min-width: 18px; height: 16px; padding: 0 4px; box-sizing: border-box; border-radius: 8px; background: #B23A3A; color: #FFFFFF; font-size: 10px; font-weight: 700; line-height: 16px; text-align: center">13</span></span>Inbox</a>
-    <a href="Main.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></svg>Ask</a>
-    <a href="More.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; font-size: 11px; color: #5B6967; text-decoration: none"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>More</a>
-  </nav>
-</div>
+  <nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: #FFFFFF; border-top: 1px solid #D9E0DE; padding: 4px 2px 20px"><a href="Home.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></span>Home</a><a href="Records.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span>Records</a><a href="Inbox.html" aria-current="page" aria-label="Inbox, 4 items" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #0B6E73; font-weight: 600"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h5l1.5 3h5l1.5-3h5M5.5 5h13L21 13v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/></svg><span aria-hidden="true" style="position: absolute; top: -4px; left: 14px; min-width: 17px; height: 17px; padding: 0 5px; box-sizing: border-box; border-radius: 9px; background: #9A6212; color: #FFFFFF; font-size: 10px; font-weight: 700; line-height: 17px; text-align: center">4</span></span>Inbox</a><a href="Main.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></svg></span>Ask</a><a href="More.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; font-size: 11px; text-decoration: none; color: #5B6967; font-weight: 400"><span style="position: relative; display: flex"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></span>More</a></nav>
+</div></template>
+<script type="text/plain" id="ll-logic" data-props='{}'>
+class Component extends DCLogic {
+  state = { t: 'refunds', gone: [], unl: [], msg: '' };
+  seg(list, cur, key) {
+    return list.map(([k, l]) => ({ label: l, on: String(k === cur), bg: k === cur ? '#FFFFFF' : 'transparent',
+      shadow: k === cur ? '0 1px 2px rgba(0,0,0,.12)' : 'none', pick: () => this.setState({ [key]: k }) }));
+  }
+  cards(list) {
+    const gone = this.state.gone;
+    return list.filter(x => !gone.includes(x.id)).map(x => ({ ...x,
+      doLink: () => this.setState({ gone: [...gone, x.id], msg: x.doneMsg }),
+      notRef: () => this.setState({ gone: [...gone, x.id], msg: 'Marked as not a refund.' }) }));
+  }
+  renderVals() {
+    const s = this.state, refunds = this.cards([{"id": 142, "name": "Brightway Refund", "meta": "Credit · Sat, 12 Sep 2026 · Test Bank Platinum", "amt": "+₹1,299", "best": true, "bestMeta": "Best match · same shop · 5 days before", "bestName": "Brightway Corvel · 7 Sep · Test Bank Platinum", "bestAmt": "₹4,600", "link": "Link ₹1,299", "doneMsg": "Linked ₹1,299 as refund."}, {"id": 233, "name": "Quenby Designs Refund", "meta": "Credit · Mon, 24 Aug 2026 · Other Bank Credit Card", "amt": "+₹1,700", "best": true, "bestMeta": "Best match · same shop · 5 days before", "bestName": "Quenby Designs · 19 Aug · Other Bank Credit Card", "bestAmt": "₹3,319", "link": "Link ₹1,700", "doneMsg": "Linked ₹1,700 as refund."}]);
+    const linked = [{"id": 12, "name": "Hpcl Fuel Stn Sec 44 → Fuel Surcharge Waiver", "meta": "Refund · ₹17 · 29 Sep", "by": "auto"}, {"id": 11, "name": "Hpcl Fuel Stn Sec 44 → Fuel Surcharge Waiver", "meta": "Refund · ₹24 · 5 Sep", "by": "auto"}, {"id": 10, "name": "Hpcl Fuel Stn Sec 44 → Fuel Surcharge Waiver", "meta": "Refund · ₹29 · 7 Aug", "by": "auto"}, {"id": 9, "name": "Hpcl Fuel Stn Sec 44 → Fuel Surcharge Waiver", "meta": "Refund · ₹29 · 5 Aug", "by": "auto"}, {"id": 8, "name": "Hpcl Fuel Stn Sec 44 → Fuel Surcharge Waiver", "meta": "Refund · ₹30 · 29 Jul", "by": "auto"}, {"id": 7, "name": "Hpcl Fuel Stn Sec 44 → Fuel Surcharge Waiver", "meta": "Refund · ₹24 · 13 Jul", "by": "auto"}, {"id": 6, "name": "Ib Vantro Dr-Card-0003 → Payment Received - Thank You", "meta": "Card bill payment · ₹17,607 · 8 Sep", "by": "auto"}, {"id": 5, "name": "Ib Vantro Dr-Card-0003 → Payment Received - Thank You", "meta": "Card bill payment · ₹14,317 · 8 Aug", "by": "auto"}].filter(l => !s.unl.includes(l.id)).map((l, i) => ({ ...l, border: i ? '1px solid #D9E0DE' : '0',
+      unlink: () => this.setState({ unl: [...s.unl, l.id], msg: 'Link removed.' }) }));
+    return { tabs: this.seg([['refunds', 'Refunds ' + refunds.length], ['payments', 'Payments 0'], ['linked', 'Linked']], s.t, 't'),
+      tRef: s.t === 'refunds', tPay: s.t === 'payments', tLinked: s.t === 'linked', refunds, noRef: !refunds.length, linked, msg: s.msg };
+  }
+}
+</script>
+<div id="ll-root"></div>
+<script src="../assets/ll-runtime.js"></script>
 </div>
 </body>
 </html>

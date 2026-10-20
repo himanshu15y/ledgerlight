@@ -12,13 +12,12 @@ Ledgerlight imports bank and card statements, sorts every record, links refunds 
 
 | Area | Screens |
 |---|---|
-| Dashboards | Overview, Trends, Cash flow, Cards, Recurring, Merchants, Merchant detail, Refunds, Trips & tags |
-| Category detail | Tap any category on Home or Trends: Food & Dining, Groceries, Shopping, Travel, Bills & Utilities, Transport, Entertainment, Health, Subscriptions |
-| Inbox and More | Inbox (open work), More (import, data checks, backups, settings) |
-| Ask, Records and refunds | Ask a question, AI answer, Records with period menu, Links, match by hand, refund linking |
-| Suggested for you | Suggestions from the local AI model, suggestion chat |
+| Home and dashboards | Home (with month chips), Trends, Cash flow, Cards, Recurring, Merchants, Merchant detail, Refunds, Trips & tags |
+| Category detail | Tap any category on Home or Trends: Food & Dining, Groceries, Shopping, Travel, Bills & Utilities, Transport, Entertainment, Health, Subscriptions, Rent & Housing |
+| Records, Ask, Inbox and Links | Records search, Ask and its answer, Inbox, Links, match by hand, refund linking |
+| Suggested for you, More, Import and Settings | Local AI suggestions and chat, More, Import and data checks, Settings |
 
-29 phone screens. Tap a screen, then use its tabs and links to move around.
+34 phone screens. Tap a screen, then use its tabs and links to move around.
 
 ## Principles
 
